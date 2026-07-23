@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>OpportunityOS — Find what's next</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ============ PINBOARD BACKDROP ============ -->
+<div class="board-texture" aria-hidden="true"></div>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <div class="brand" data-nav="landing">
+      <span class="brand-pin"></span>
+      <span class="brand-name">Opportunity<b>OS</b></span>
+    </div>
+    <nav class="nav-links" id="navLinks">
+      <button class="nav-link" data-tab="search">Search</button>
+      <button class="nav-link" data-tab="hackathons">Hackathons</button>
+      <button class="nav-link" data-tab="research">Research</button>
+      <button class="nav-link" data-tab="recommend">For You</button>
+      <button class="nav-link" data-tab="bookmarks">Saved</button>
+      <button class="nav-link" data-tab="profile">Profile</button>
+    </nav>
+    <div class="nav-auth" id="navAuth">
+      <button class="btn btn-ghost" id="btnLogin">Log in</button>
+      <button class="btn btn-solid" id="btnSignup">Sign up free</button>
+    </div>
+    <div class="nav-user hidden" id="navUser">
+      <span class="user-chip" id="userChip">S</span>
+      <button class="btn btn-ghost btn-sm" id="btnLogout">Log out</button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ LANDING ============ -->
+<main id="landing" class="landing">
+  <section class="hero">
+    <div class="hero-tag">◆ For students hunting the next thing</div>
+    <h1 class="hero-title">
+      Every job, internship,<br>
+      hackathon &amp; research slot<br>
+      <span class="hero-underline">pinned to one board.</span>
+    </h1>
+    <p class="hero-sub">
+      OpportunityOS reads your resume, scores every live opening against it,
+      and pings you on email or WhatsApp the moment something fits — so you stop
+      refreshing ten tabs and start applying.
+    </p>
+    <div class="hero-cta">
+      <button class="btn btn-solid btn-lg" id="heroSignup">Get my board — it's free</button>
+      <button class="btn btn-outline btn-lg" id="heroDemo">See how matching works ↓</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">4</span><span class="stat-label">source types<br>jobs · hackathons · research · internships</span></div>
+      <div class="stat"><span class="stat-num">2</span><span class="stat-label">alert channels<br>email + WhatsApp</span></div>
+      <div class="stat"><span class="stat-num">1</span><span class="stat-label">resume upload<br>that's it</span></div>
+    </div>
+  </section>
+
+  <section class="how" id="how">
+    <h2 class="section-title">How it gets pinned to your board</h2>
+    <ol class="how-steps">
+      <li class="how-card">
+        <span class="how-index">Upload</span>
+        <h3>Drop your resume</h3>
+        <p>PDF or DOCX. We parse your skills, projects and role — nothing is typed in by hand.</p>
+      </li>
+      <li class="how-card">
+        <span class="how-index">Search</span>
+        <h3>Tell us what you want</h3>
+        <p>"ML internship, remote", "frontend job, Bangalore" — plain language, no filters to fight.</p>
+      </li>
+      <li class="how-card">
+        <span class="how-index">Match</span>
+        <h3>AI scores every result</h3>
+        <p>Each opening is scored on skill fit, location, growth and deadline pressure — ranked, not just listed.</p>
+      </li>
+      <li class="how-card">
+        <span class="how-index">Notify</span>
+        <h3>We tap you on the shoulder</h3>
+        <p>Turn on email or WhatsApp alerts once, and new matches land in your pocket automatically.</p>
+      </li>
+    </ol>
+  </section>
+
+  <footer class="landing-footer">
+    <span>OpportunityOS — built for the search, not the scroll.</span>
+  </footer>
+</main>
+
+<!-- ============ APP SHELL (post-login) ============ -->
+<main id="app" class="app hidden">
+
+  <!-- SEARCH -->
+  <section class="panel active" data-panel="search">
+    <div class="panel-head">
+      <h2>Search the board</h2>
+      <p>Jobs &amp; internships, pulled live from the web right now.</p>
+    </div>
+    <form class="search-bar" id="searchForm">
+      <input type="text" id="searchQuery" placeholder="e.g. frontend developer intern" required />
+      <input type="text" id="searchLocation" placeholder="Location (optional)" />
+      <button type="submit" class="btn btn-solid">Search</button>
+    </form>
+    <div class="results" id="searchResults"></div>
+  </section>
+
+  <!-- HACKATHONS -->
+  <section class="panel" data-panel="hackathons">
+    <div class="panel-head">
+      <h2>Open hackathons</h2>
+      <p>Currently accepting registrations, found across the web.</p>
+    </div>
+    <form class="search-bar" id="hackForm">
+      <input type="text" id="hackQuery" placeholder="e.g. AI hackathon, student teams welcome" />
+      <button type="submit" class="btn btn-solid">Find hackathons</button>
+    </form>
+    <div class="results" id="hackResults"></div>
+  </section>
+
+  <!-- RESEARCH -->
+  <section class="panel" data-panel="research">
+    <div class="panel-head">
+      <h2>Research &amp; fellowships</h2>
+      <p>REUs, labs and academic positions currently open to apply.</p>
+    </div>
+    <form class="search-bar" id="researchForm">
+      <select id="researchTopic">
+        <option value="all">All topics</option>
+        <option value="ai">AI / ML</option>
+        <option value="biotech">Biotech</option>
+        <option value="climate">Climate science</option>
+        <option value="cs">CS / HCI</option>
+        <option value="reu">NSF REU</option>
+      </select>
+      <input type="text" id="researchQuery" placeholder="Or type a custom search" />
+      <button type="submit" class="btn btn-solid">Find research</button>
+    </form>
+    <div class="results" id="researchResults"></div>
+  </section>
+
+  <!-- RECOMMEND -->
+  <section class="panel" data-panel="recommend">
+    <div class="panel-head">
+      <h2>Matched for you</h2>
+      <p>Ranked against your uploaded resume by the AI matcher.</p>
+    </div>
+    <div class="notice" id="recommendNotice"></div>
+    <form class="search-bar" id="recommendForm">
+      <input type="text" id="recommendQuery" placeholder="e.g. backend engineer roles" required />
+      <input type="text" id="recommendLocation" placeholder="Location (optional)" />
+      <button type="submit" class="btn btn-solid">Get my matches</button>
+    </form>
+    <div class="results" id="recommendResults"></div>
+  </section>
+
+  <!-- BOOKMARKS -->
+  <section class="panel" data-panel="bookmarks">
+    <div class="panel-head">
+      <h2>Saved</h2>
+      <p>Everything you've pinned, in one place.</p>
+    </div>
+    <div class="results" id="bookmarkResults"></div>
+  </section>
+
+  <!-- PROFILE -->
+  <section class="panel" data-panel="profile">
+    <div class="panel-head">
+      <h2>Your profile</h2>
+      <p>Resume, details and how we should reach you.</p>
+    </div>
+
+    <div class="profile-grid">
+      <div class="card resume-card">
+        <h3>Resume</h3>
+        <p class="muted" id="resumeStatus">No resume on file yet — recommendations need one.</p>
+        <label class="dropzone" id="dropzone">
+          <input type="file" id="resumeFile" accept=".pdf,.doc,.docx" hidden />
+          <span id="dropzoneLabel">Click to upload PDF or DOCX</span>
+        </label>
+        <div id="resumeSkills" class="chip-row"></div>
+      </div>
+
+      <div class="card">
+        <h3>Account details</h3>
+        <form id="profileForm" class="stacked-form">
+          <label>Name<input type="text" id="pfName" /></label>
+          <label>Preferred role<input type="text" id="pfRole" placeholder="e.g. Data Analyst" /></label>
+          <label>Preferred location<input type="text" id="pfLocation" placeholder="e.g. Remote / Bengaluru" /></label>
+          <label>Skills<input type="text" id="pfSkills" placeholder="comma separated" /></label>
+          <button type="submit" class="btn btn-solid btn-sm">Save details</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <h3>Alerts</h3>
+        <p class="muted">Get pinged the moment a new match shows up.</p>
+        <form id="notifyForm" class="stacked-form">
+          <label class="check-row"><input type="checkbox" id="notifyEmail" /> Email me new matches</label>
+          <label class="check-row"><input type="checkbox" id="notifyWhatsapp" /> WhatsApp me new matches</label>
+          <label>WhatsApp number<input type="text" id="whatsappNumber" placeholder="+91XXXXXXXXXX" /></label>
+          <div class="btn-row">
+            <button type="submit" class="btn btn-solid btn-sm">Save alert settings</button>
+            <button type="button" class="btn btn-outline btn-sm" id="btnTestNotify">Send test alert</button>
+          </div>
+        </form>
+        <p class="muted small" id="notifyHint"></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ AUTH MODAL ============ -->
+<div class="modal-backdrop hidden" id="authBackdrop">
+  <div class="modal">
+    <button class="modal-close" id="authClose">&times;</button>
+    <div class="modal-tabs">
+      <button class="modal-tab active" data-authtab="login">Log in</button>
+      <button class="modal-tab" data-authtab="signup">Sign up</button>
+    </div>
+
+    <form id="loginForm" class="stacked-form modal-form active">
+      <label>Email<input type="email" id="loginEmail" required /></label>
+      <label>Password<input type="password" id="loginPassword" required /></label>
+      <button type="submit" class="btn btn-solid btn-block">Log in</button>
+      <p class="form-error" id="loginError"></p>
+    </form>
+
+    <form id="signupForm" class="stacked-form modal-form">
+      <label>Name<input type="text" id="signupName" required /></label>
+      <label>Email<input type="email" id="signupEmail" required /></label>
+      <label>Password<input type="password" id="signupPassword" required minlength="6" /></label>
+      <button type="submit" class="btn btn-solid btn-block">Create account</button>
+      <p class="form-error" id="signupError"></p>
+    </form>
+  </div>
+</div>
+
+<!-- ============ TOAST ============ -->
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
