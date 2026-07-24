@@ -51,8 +51,10 @@ Note:-
 -We had developed Two UI and with Some feautre modification too.
 
 1) Black and Minimal Features.
+   Our Project Uploaded Youtube Video :- https://youtu.be/GT5SGs2YSH0
 
-2) White and Blue Advanced Features.
+3) White and Blue Advanced Features.
+   Our Project Uploaded Youtube Video :-https://youtu.be/RGpWpPnypoo?si=YOs3xxWTBVODzchX
 
 Frontend And Backend Activation:-
 
