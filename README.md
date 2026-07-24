@@ -2,7 +2,7 @@ Project Title:-
 -SignalFire
 
 Project Description:-
--OpportunityOS is an AI-powered Career Intelligence Platform that helps students and professionals discover personalized jobs, internships, hackathons, scholarships, and learning opportunities.
+-Signalfire is an AI-powered Career Intelligence Platform that helps students and professionals discover personalized jobs, internships, hackathons, scholarships, and learning opportunities.
 -The platform analyzes a user's profile, resume, skills, and interests using AI to recommend the best opportunities from multiple sources.
 
 Features:-
@@ -116,6 +116,7 @@ Open your browser:
 http://127.0.0.1:8000
 or
 http://127.0.0.1:8000/docs
+
 Swagger UI should open.
 If it does, the backend is running successfully.
 
